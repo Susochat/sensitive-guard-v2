@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Sensitive Guard AI DLP",
+  "short_name": "Sensitive Guard",
+  "version": "2.0.0",
+  "description": "Local browser DLP that detects sensitive data before it is sent to AI services and websites.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "action": {"default_title": "Sensitive Guard", "default_popup": "popup.html"},
+  "options_page": "options.html",
+  "background": {"service_worker": "background.js"},
+  "content_scripts": [
+    {"matches": ["<all_urls>"], "js": ["content.js"], "run_at": "document_start", "all_frames": true},
+    {"matches": ["<all_urls>"], "js": ["network-guard.js"], "run_at": "document_start", "world": "MAIN", "all_frames": true}
+  ],
+  "icons": {}
+}
